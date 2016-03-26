@@ -19,6 +19,7 @@ package sample.plugin;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
@@ -38,8 +39,18 @@ public class MyMojo
     @Parameter(defaultValue = "${project.build.directory}", property = "outputDir", required = true)
     private File outputDirectory;
 
+    /**
+     * The Maven Session Object
+     *
+     * @parameter expression="${session}"
+     */
+    @Parameter(defaultValue = "${session}")
+    protected MavenSession session;
+
     public void execute()
         throws MojoExecutionException {
+
+        System.out.println("---------------> IS INTERACTIVE? " + session.getSettings().isInteractiveMode());
         File f = outputDirectory;
 
         if (!f.exists()) {
