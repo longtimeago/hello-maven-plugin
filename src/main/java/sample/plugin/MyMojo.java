@@ -50,7 +50,7 @@ public class MyMojo
     public void execute()
         throws MojoExecutionException {
 
-        //System.out.println("---------------> IS INTERACTIVE? " + session.getSettings().isInteractiveMode());
+        System.out.println("---------------> IS INTERACTIVE? " + session.getSettings().isInteractiveMode());
         File f = outputDirectory;
 
         if (!f.exists()) {
